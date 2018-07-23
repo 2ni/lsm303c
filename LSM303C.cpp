@@ -175,9 +175,10 @@ void LSM303C::calibrate_mag() {
 
   LSM303C_raw mag_min = {9999, 9999, 9999};
   LSM303C_raw mag_max = {-9999, -9999, -9999};
-  LSM303C_sensor m, m_last;
+  LSM303C_sensor m;
   long now = millis();
 
+  // TODO stop automatically if no more changes
   while(1) {
     m = read_mag();
     if (m.raw.x < mag_min.x) mag_min.x = m.raw.x;
